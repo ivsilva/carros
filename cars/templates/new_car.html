@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Adicionar Novo Carro{% endblock %}
+
+{% block content %}
+  <h2>Adicionar Novo Carro</h2>
+  <form method="post" enctype="multipart/form-data" style="max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div style="text-align: center;">
+      <button type="submit" class="button">Adicionar Carro</button>
+    </div>
+  </form>
+{% endblock %}
