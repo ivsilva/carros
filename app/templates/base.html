@@ -141,8 +141,12 @@
   </header>
 
   <div class="hero">
-    <h2>Encontre o carro dos seus sonhos</h2>
+    <video autoplay muted loop class="hero-video">
+      <source src="{% static 'videos/v.mp4' %}" type="video/mp4">
+      Seu navegador não suporta a tag de vídeo.
+    </video>
   </div>
+  
 
   <main>
     {% block content %}
