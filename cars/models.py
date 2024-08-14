@@ -22,11 +22,19 @@ class Car(models.Model):
     def __str__(self):
         return self.model
     
+class CarImage(models.Model):
+    car = models.ForeignKey(Car, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='cars/photos/')
+
+class CarVideo(models.Model):
+    car = models.ForeignKey(Car, related_name='videos', on_delete=models.CASCADE)
+    video = models.FileField(upload_to='cars/videos/')
 
 class CarInventario(models.Model):
     cars_count = models.IntegerField() #Quantitade de carros em estoque
     cars_value = models.FloatField() # Valor total de carros em nosso estoque
     created_at = models.DateField(auto_now_add=True) # Armazena data e horario. auto_now_add o django alimenta automaticamente com a data atual
+
 
     class Meta: # Sobre escrevendo minha class Meta
         ordering = ['-created_at'] # ordenando do mais recente para mais antigo
