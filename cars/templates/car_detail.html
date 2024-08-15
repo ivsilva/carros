@@ -116,24 +116,27 @@
       {% endif %}
   </div>
   
-  {% if object.images.all %}
-    <div class="car-images">
-      {% for image in object.images.all %}
-        <img src="{{ image.image.url }}" alt="Imagem do {{ object.model }}">
-      {% endfor %}
-    </div>
-  {% endif %}
-  
-  {% if object.videos.all %}
-    <div class="car-videos">
-      {% for video in object.videos.all %}
-        <video controls>
-          <source src="{{ video.video.url }}" type="video/mp4">
-          Seu navegador não suporta a tag de vídeo.
-        </video>
-      {% endfor %}
-    </div>
-  {% endif %}
+    {% if user.is_authenticated %} 
+    {% if object.images.all %}
+      <div class="car-images">
+        {% for image in object.images.all %}
+          <img src="{{ image.image.url }}" alt="Imagem do {{ object.model }}">
+        {% endfor %}
+      </div>
+    {% endif %} 
+    {% endif %}
+    {% if user.is_authenticated %}    
+    {% if object.videos.all %}
+      <div class="car-videos">
+        {% for video in object.videos.all %}
+          <video controls>
+            <source src="{{ video.video.url }}" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+          </video>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% endif %}
 
   <div>
     {% if user.is_authenticated %}
