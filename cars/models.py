@@ -21,14 +21,6 @@ class Car(models.Model):
 
     def __str__(self):
         return self.model
-    
-class CarImage(models.Model):
-    car = models.ForeignKey(Car, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='cars/photos/')
-
-class CarVideo(models.Model):
-    car = models.ForeignKey(Car, related_name='videos', on_delete=models.CASCADE)
-    video = models.FileField(upload_to='cars/videos/')
 
 class CarInventario(models.Model):
     cars_count = models.IntegerField() #Quantitade de carros em estoque
