@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cars.models import Car, Brand, CarImage, CarVideo #Da pasta cars do arquivo models importar cars
+from cars.models import Car, Brand  #Da pasta cars do arquivo models importar cars
 
 
 class BrandAdmin(admin.ModelAdmin):
