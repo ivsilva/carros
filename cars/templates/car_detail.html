@@ -100,46 +100,22 @@
       height: 200px;
     }
   </style>
-
   <div class="car-card">
-    {% if object.photo %}
-      <img src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand }}">
-    {% else %}
-      <p class="no-photo">Foto não disponível</p>
-    {% endif %}
-    <h2>{{ object.brand }} {{ object.model }}</h2>
-    <p><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
-    <p><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
-    <p><strong>Placa:</strong> {{ object.plate }}</p>
-    <p><strong>Preço:</strong> R$ {{ object.value }}</p>
-    {% if object.bio %}
+      {% if object.photo %}
+        <img src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand }}">
+      {% else %}
+        <p class="no-photo"> Foto não disponivel</p>
+      {% endif %}
+      <h2>{{ object.brand }} {{ object.model }}</h2>
+      <p><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
+      <p><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
+      <p><strong>Placa:</strong> {{ object.plate }}</p>
+      <p><strong>Preço:</strong> R$ {{ object.value }}</p>
+      {% if object.bio %}
       <p><strong>Descrição:</strong> {{ object.bio }}</p>
-    {% endif %}
+      {% endif %}
   </div>
-
-  {% if user.is_authenticated %}
-    {% if object.images.all %}
-      <div class="car-images">
-        {% for image in object.images.all %}
-          <img src="{{ image.image.url }}" alt="Imagem do {{ object.model }}">
-        {% endfor %}
-      </div>
-    {% endif %}
-  {% endif %}
-
-  {% if user.is_authenticated %}
-    {% if object.videos.all %}
-      <div class="car-videos">
-        {% for video in object.videos.all %}
-          <video controls>
-            <source src="{{ video.video.url }}" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
-          </video>
-        {% endfor %}
-      </div>
-    {% endif %}
-  {% endif %}
-
+  
   <div>
     {% if user.is_authenticated %}
       <div class="buttons-container">
