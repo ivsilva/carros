@@ -117,13 +117,13 @@
   </div>
   
     {% if user.is_authenticated %} 
-    {% if object.images.all %}
-      <div class="car-images">
-        {% for image in object.images.all %}
-          <img src="{{ image.image.url }}" alt="Imagem do {{ object.model }}">
-        {% endfor %}
-      </div>
-    {% endif %} 
+      {% if object.images.all %}
+        <div class="car-images">
+          {% for image in object.images.all %}
+            <img src="{{ image.image.url }}" alt="Imagem do {{ object.model }}">
+        </div>
+          {% endfor %} 
+      {% endif %} 
     {% endif %}
     {% if user.is_authenticated %}    
     {% if object.videos.all %}
