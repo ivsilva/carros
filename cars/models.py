@@ -4,6 +4,7 @@ class Brand(models.Model):
     id = models.AutoField(primary_key=True)
     model = models.CharField(max_length=200)
     
+
     def __str__(self):
         return self.model
 
@@ -21,20 +22,28 @@ class Car(models.Model):
     def __str__(self):
         return self.model
 
-class CarImage(models.Model):
-    car = models.ForeignKey(Car, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='car_images/')
-    
-    def __str__(self):
-        return f'Image for {self.car.model}'
-
 class CarInventario(models.Model):
-    cars_count = models.IntegerField() # Quantidade de carros em estoque
+    cars_count = models.IntegerField() #Quantitade de carros em estoque
     cars_value = models.FloatField() # Valor total de carros em nosso estoque
-    created_at = models.DateField(auto_now_add=True) # Armazena data e horário. auto_now_add o django alimenta automaticamente com a data atual
+    created_at = models.DateField(auto_now_add=True) # Armazena data e horario. auto_now_add o django alimenta automaticamente com a data atual
+
 
     class Meta: # Sobre escrevendo minha class Meta
-        ordering = ['-created_at'] # Ordenando do mais recente para mais antigo
+        ordering = ['-created_at'] # ordenando do mais recente para mais antigo
 
     def __str__(self):
-        return f'{self.cars_count} - {self.cars_value}' # Print
+        return f'{self.cars_count} - {self.cars_value}' #Print
+
+    # nosso brand agora recebe ForeignKey (chave estrangeira)
+    #usamos isso para dizer que essa nossa variavel vai ser ligada
+    #com outra outa tabela a Brand
+
+    #on_delete = models.PROTECT - Proibe que alguem tente apagar 
+    #algum dado da nossa tabela
+
+    #related_name='brand' - É só um nome que chamamos nossa ligação
+    # de Car e Brand por exemplo
+
+    #Toda alteração de modelos, tabela, banco de dados que fizermos
+    #devemos avisar para o django com makemigrations e migrate
+    #Atualiza tudo la no nosso banco de dados
