@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Carro{% endblock %}
+{% block title %}Detalhes do Carro{% endblock %}
 
 {% block content %}
   <style>
@@ -80,12 +80,27 @@
     a {
       text-decoration: none !important;
     }
+
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .image-gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
   </style>
   <div class="car-card">
       {% if object.photo %}
         <img src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand }}">
       {% else %}
-        <p class="no-photo"> Foto não disponivel</p>
+        <p class="no-photo">Foto não disponível</p>
       {% endif %}
       <h2>{{ object.brand }} {{ object.model }}</h2>
       <p><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
@@ -96,6 +111,18 @@
       <p><strong>Descrição:</strong> {{ object.bio }}</p>
       {% endif %}
   </div>
+
+  <!-- Exibição das imagens adicionais -->
+  <div class="image-gallery">
+    {% if object.images.all %}
+      {% for image in object.images.all %}
+        <img src="{{ image.image.url }}" alt="Imagem adicional de {{ object.model }}">
+      {% endfor %}
+    {% else %}
+      <p>Sem imagens adicionais disponíveis.</p>
+    {% endif %}
+  </div>
+
   <div>
     {% if user.is_authenticated %}
       <div class="buttons-container">
